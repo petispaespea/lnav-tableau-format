@@ -5,7 +5,7 @@
 		"url": "",
 		"regex": {
 			"default": {
-				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) (?<valami>\\([^)]+\\)) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S+))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
+				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) \\([^,]*,[^,]*,[^,]*,(?<sessionid>[^,]*)(?:,[^,]*)?(?:,(?<task>[^,]*),[^,]*)?\\) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S+))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
 			}
 		},
 		"level-field": "level",
@@ -28,11 +28,19 @@
 				"kind": "string",
 				"identifier": true
 			},
+			"sessionid": {
+				"kind": "string",
+				"identifier": true
+			},
 			"wgsessionId": {
 				"kind": "string",
 				"identifier": true
 			},
 			"thread": {
+				"kind": "string",
+				"identifier": true
+			},
+			"task": {
 				"kind": "string",
 				"identifier": true
 			},
@@ -60,6 +68,12 @@
 			},
 			{
 				"line": "2018-08-09 02:00:00.694 +0200 (Default,local\\loadtest,CFBBA677025D4DF4A190FCFD5C18DF8D-0:0,W2uEAPQRNaDxFJw-8kdQOwAAATg) catalina-exec-187 : INFO  wgsessionId=AI8vthahRXS-iUJws6NjAw com.tableausoftware.model.vizql.service.viewer.ViewerServiceImpl - assigned workbook file 'C:\\ProgramData\\Tableau\\Tableau Server\\data\\tabsvc\\temp\\repoItem29583327894994499.tmp' to session id 'CFBBA677025D4DF4A190FCFD5C18DF8D-0:0'"
+			},
+			{
+				"line": "2018-08-09 11:00:28.577 +0200 (,,,) scheduled-purge-temp-directories-1 : INFO  com.tableausoftware.core.service.PurgeDirectoryService - Purged 0 KB and 0 files with 21 files/directories that couldn't be deleted."
+			},
+			{
+				"line": "2018-08-08 09:23:45.176 +0200 (-,-,Zfyc2i61Sq2Qrj6fMVIsmQ,W2qagfQRNaDxFJw-8kf9MgAAARg,0:5a148f5a:164db30374b:-5875) catalina-exec-155 vizportal: INFO  com.tableausoftware.domain.session.SessionService - Session is expired or null"
 			}
 		]
 	},
@@ -67,7 +81,7 @@
 		"title": "Tableau access log format",
 		"regex": {
 			"default": {
-				"pattern": "^(?<address>[0-9a-f:][0-9a-f.:]+[0-9a-f]) - - (?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d+) (?<timezone>\\D+) (?<port>\\d+) \"(?<method>\\w+) (?<uri>/\\S*) HTTP/(?<proto_version>\\d\\.\\d)\" \"(?:[\\d.-]+)\" (?<status_code>\\d+) (?:[\\d-]+) \"(?:[\\d-]+)\" (?:[\\d-]+) (?<hash>[A-Za-z0-9_@-]+)\\s*$"
+				"pattern": "^(?<address>[0-9a-f:][0-9a-f.:]+[0-9a-f]) - - (?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d+) (?<timezone>\\D+) (?<port>\\d+) \"(?<method>\\w+) (?<uri>/\\S*) HTTP/(?<proto_version>\\d\\.\\d)\" \"(?:[\\d.-]+)\" (?<status_code>\\d+) (?:[\\d-]+) \"(?:[\\d-]+)\" (?:[\\d-]+) (?<sessionid>[A-Za-z0-9_@-]+)\\s*$"
 			}
 		},
 		"timestamp-format": [
@@ -96,9 +110,9 @@
 				"kind": "integer",
 				"identifier": true
 			},
-			"hash": {
+			"sessionid": {
 				"kind": "string",
-				"identifier": false
+				"identifier": true
 			}
 		},
 		"sample": [
