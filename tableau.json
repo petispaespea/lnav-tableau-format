@@ -5,7 +5,7 @@
 		"url": "",
 		"regex": {
 			"default": {
-				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) \\([^,]*,[^,]*,[^,]*,(?<sessionid>[^,]*)(?:,[^,]*)?(?:,(?<task>[^,]*),[^,]*)?\\) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S+))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
+				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) \\([^,]*,[^,]*,[^,]*,(?<sessionid>[^,]*)(?:,(?<jobid>[^,]*),(?<job>[^,]*))?(?:,[^,]*)?\\) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S*))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
 			}
 		},
 		"level-field": "level",
@@ -40,7 +40,11 @@
 				"kind": "string",
 				"identifier": true
 			},
-			"task": {
+			"jobid": {
+				"kind": "integer",
+				"identifier": true
+			},
+			"job": {
 				"kind": "string",
 				"identifier": true
 			},
@@ -74,6 +78,12 @@
 			},
 			{
 				"line": "2018-08-08 09:23:45.176 +0200 (-,-,Zfyc2i61Sq2Qrj6fMVIsmQ,W2qagfQRNaDxFJw-8kf9MgAAARg,0:5a148f5a:164db30374b:-5875) catalina-exec-155 vizportal: INFO  com.tableausoftware.domain.session.SessionService - Session is expired or null"
+			},
+			{
+				"line": "2018-08-08 09:12:54.158 +0200 (Default,local\\dev,-,W1rt@-QRNaDxFJw-8kfJgQAAASA) pool-6-thread-1 : INFO  wgsessionId=w8LSSx2DRKao1E1NorqyCg com.tableausoftware.domain.session.SessionService - Non-guest user session found."
+			},
+			{
+				"line": "2018-08-08 03:55:27.974 +0200 (,,,) scheduled-reindex-pending-content-1 : INFO  wgsessionId= com.tableausoftware.domain.content.AnalyticsServiceReindexer - reindexPendingItems is reindexing 0 items."
 			}
 		]
 	},
@@ -249,7 +259,8 @@
 				"kind": "string"
 			},
 			"sess": {
-				"kind": "string"
+				"kind": "string",
+				"identifier": true
 			},
 			"site": {
 				"kind": "string"
