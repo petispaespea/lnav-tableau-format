@@ -1,0 +1,255 @@
+{
+	"tableau_text": {
+		"title": "Tableau text log format",
+		"description": "",
+		"url": "",
+		"regex": {
+			"default": {
+				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) (?<valami>\\([^)]+\\)) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S+))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
+			}
+		},
+		"level-field": "level",
+		"level": {
+			"info": "INFO",
+			"error": "ERROR",
+			"warning": "WARN",
+			"debug": "DEBUG",
+			"fatal": "FATAL"
+		},
+		"timestamp-format": [
+			"%Y-%m-%d %H:%M:%S.%L %z"
+		],
+		"value": {
+			"level": {
+				"kind": "string",
+				"identifier": true
+			},
+			"component": {
+				"kind": "string",
+				"identifier": true
+			},
+			"wgsessionId": {
+				"kind": "string",
+				"identifier": true
+			},
+			"thread": {
+				"kind": "string",
+				"identifier": true
+			},
+			"module": {
+				"kind": "string",
+				"hidden": true
+			},
+			"body": {
+				"kind": "string"
+			},
+			"pid": {
+				"kind": "integer",
+				"identifier": true
+			}
+		},
+		"sample": [
+			{
+				"line": "2018-08-09 02:00:38.643 +0200 (,,,,,,) scheduled-schedule-runner-1 : INFO  com.tableausoftware.backgrounder.runner.ScheduleRunner - Updating next runtime for schedule Delete Expired Tickets Schedule from [Thursday, August 9, 2018 12:00:00 AM UTC] to [Thursday, August 9, 2018 12:05:00 AM UTC]. Schedule active [true]."
+			},
+			{
+				"line": "2018-08-09 02:00:41.867 +0200 (,,,,145165,:sos_reconcile,-) pool-4-thread-1 backgrounder: INFO  com.tableausoftware.model.workgroup.CustomizedViewThumbnailType - start list for type type.customized_view_thumbnail with startid -1 and pagesize 100000"
+			},
+			{
+				"line": "2018-08-09 02:00:09.808 +0200 (-,-,-,W2uECfQRNaDxFJw-8kdQmgAAATg,0:5a148f5a:1651b75509a:1306) catalina-exec-189 vizportal: INFO  com.tableausoftware.app.vizportal.UserAgentLoggingInterceptor - User Agent: Tableau vizportal"
+			},
+			{
+				"line": "2018-08-09 02:00:00.694 +0200 (Default,local\\loadtest,CFBBA677025D4DF4A190FCFD5C18DF8D-0:0,W2uEAPQRNaDxFJw-8kdQOwAAATg) catalina-exec-187 : INFO  wgsessionId=AI8vthahRXS-iUJws6NjAw com.tableausoftware.model.vizql.service.viewer.ViewerServiceImpl - assigned workbook file 'C:\\ProgramData\\Tableau\\Tableau Server\\data\\tabsvc\\temp\\repoItem29583327894994499.tmp' to session id 'CFBBA677025D4DF4A190FCFD5C18DF8D-0:0'"
+			}
+		]
+	},
+	"tableau_access": {
+		"title": "Tableau access log format",
+		"regex": {
+			"default": {
+				"pattern": "^(?<address>[0-9a-f:][0-9a-f.:]+[0-9a-f]) - - (?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d+) (?<timezone>\\D+) (?<port>\\d+) \"(?<method>\\w+) (?<uri>/\\S*) HTTP/(?<proto_version>\\d\\.\\d)\" \"(?:[\\d.-]+)\" (?<status_code>\\d+) (?:[\\d-]+) \"(?:[\\d-]+)\" (?:[\\d-]+) (?<hash>[A-Za-z0-9_@-]+)\\s*$"
+			}
+		},
+		"timestamp-format": [
+			"%Y-%m-%d %H:%M:%S.%L"
+		],
+		"value": {
+			"address": {
+				"kind": "string",
+				"identifier": true
+			},
+			"timezone": {
+				"hidden": true
+			},
+			"method": {
+				"kind": "string",
+				"identifier": true
+			},
+			"uri": {
+				"kind": "string",
+				"identifier": false
+			},
+			"proto_version": {
+				"kind": "float"
+			},
+			"status_code": {
+				"kind": "integer",
+				"identifier": true
+			},
+			"hash": {
+				"kind": "string",
+				"identifier": false
+			}
+		},
+		"sample": [
+			{
+				"line": "192.168.227.254 - - 2018-08-08 08:36:07.760 Central Europe Daylight Time 80 \"POST /vizportal/api/web/v1/getSessionInfo HTTP/1.1\" \"-\" 401 35 \"39\" 42008 W2qPV-QRNaDxFJw-8kf8VgAAATw"
+			},
+			{
+				"line": "192.168.227.254 - - 2018-08-08 08:36:07.760 Central Europe Daylight Time 80 \"POST /vizportal/api/web/v1/getSessionInfo HTTP/1.1\" \"-\" 401 35 \"39\" 42008 W2qPV-QRNaDxFJw-8kf8VgAAATw"
+			},
+			{
+				"line": "192.168.227.254 - - 2018-08-08 08:40:45.636 Central Europe Daylight Time 80 \"GET /img/filter_toggle_normal.svg?vywd18hbec HTTP/1.1\" \"-\" 304 - \"-\" 9001 W2qQbfQRNaDxFJw-8kf8cwAAATw"
+			},
+			{
+				"line": "192.168.217.101 - - 2018-08-08 23:59:57.730 Central Europe Daylight Time 80 \"GET /vizql/tilecache/5A4B76E5FEDD4902998ECCA225687C33-0:0/0/ed60db3dce0c55ab7a81d687830c978a9b0cd5b50aa31d16f2a65a442f10d9fc/views.14786995174792298715_14727324166039656782.title.0.0.png?1533765597726 HTTP/1.1\" \"-\" 200 1199 \"-\" 1999 W2tn3fQRNaDxFJw-8kcr6w"
+			},
+			{
+				"line": "192.168.217.101 - - 2018-08-08 23:59:57.742 Central Europe Daylight Time 80 \"GET /manual/auth?format=xml HTTP/1.1\" \"-\" 200 2162 \"-\" 100009 W2tn3fQRNaDxFJw-8kcr7QAAARw"
+			},
+			{
+				"line": "10.8.0.18 - - 2018-08-08 09:23:45.804 Central Europe Daylight Time 80 \"GET / HTTP/1.1\" \"-\" 200 526 \"-\" 2993 W2qagfQRNaDxFJw-8kf9NQAAARg"
+			},
+			{
+				"line": "192.168.227.254 - - 2018-08-08 13:32:10.986 Central Europe Daylight Time 80 \"GET /img/info_hover.svg?vywd18hbec HTTP/1.1\" \"-\" 200 532 \"-\" 2995 W2rUuvQRNaDxFJw-8kf-@QAAARA"
+			},
+			{
+				"line": "::1 - - 2018-08-08 16:08:40.472 Central Europe Daylight Time 80 \"GET /favicon.ico HTTP/1.1\" \"127.0.0.1\" 200 10134 \"-\" 3000 W2r5aPQRNaDxFJw-8kcHZgAAAQA"
+			}
+		]
+	},
+	"tableau_tabsvc": {
+		"title": "Tableau tabsvc log format",
+		"regex": {
+			"default": {
+				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4})_(?<level>[^_]+)_(?<body>.*)$"
+			}
+		},
+		"timestamp-format": [
+			"%Y-%m-%d %H:%M:%S.%L %z"
+		],
+		"value": {
+			"address": {
+				"kind": "string",
+				"identifier": true
+			},
+			"timezone": {
+				"hidden": true
+			},
+			"method": {
+				"kind": "string",
+				"identifier": true
+			},
+			"uri": {
+				"kind": "string",
+				"identifier": false
+			},
+			"proto_version": {
+				"kind": "float"
+			},
+			"status_code": {
+				"kind": "integer",
+				"identifier": true
+			},
+			"hash": {
+				"kind": "string",
+				"identifier": false
+			}
+		},
+		"sample": [
+			{
+				"line": "2018-08-09 15:57:23.085 +0200_WARN_server=:_service=:_session=_pid=_tid=:0x00002a94_logger=tabsvc.tabsvc_user=_session=_request=_message=Restarting dead component 'Tableau Server Backgrounder 0'."
+			}
+		]
+	},
+	"tableau_tabproto": {
+		"title": "Tableau tabproto log format",
+		"json": true,
+		"line-format": [
+			{
+				"field": "ts"
+			},
+			" ",
+			{
+				"field": "k"
+			},
+			" ",
+			{
+				"field": "sev"
+			},
+			" ",
+			{
+				"field": "pid"
+			},
+			" ",
+			{
+				"field": "tid"
+			},
+			" ",
+			{
+				"field": "site"
+			},
+			" ",
+			{
+				"field": "req"
+			},
+			" ",
+			{
+				"field": "sess"
+			},
+			" ",
+			{
+				"field": "user"
+			},
+			" ",
+			{
+				"field": "v"
+			}
+		],
+		"timestamp-format": [
+			"%Y-%m-%dT%H:%M:%S.%L"
+		],
+		"timestamp-field": "ts",
+		"level-field": "sev",
+		"body-field": "v",
+		"value": {
+			"pid": {
+				"kind": "integer",
+				"identifier": true
+			},
+			"tid": {
+				"kind": "string",
+				"identifier": true
+			},
+			"req": {
+				"kind": "string"
+			},
+			"sess": {
+				"kind": "string"
+			},
+			"site": {
+				"kind": "string"
+			},
+			"user": {
+				"kind": "string"
+			},
+			"k": {
+				"kind": "string",
+				"identifier": true
+			},
+			"v": {
+				"kind": "json"
+			}
+		}
+	}
+}
