@@ -6,6 +6,9 @@
 		"regex": {
 			"default": {
 				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) \\([^,]*,[^,]*,[^,]*,(?<sessionid>[^,]*)(?:,(?<jobid>[^,]*),(?<job>[^,]*))?(?:,[^,]*)?\\) (?<thread>\\S+ (?<component>\\S+)?): (?<level>\\w+)\\s+(?:wgsessionId=(?<wgsessionId>\\S*))?\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
+			},
+			"filestore": {
+				"pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [+-]\\d{4}) (?<component>\\S+)\\s+(?<level>\\w+)\\s+:\\s*(?<module>\\w+(\\.\\w+)*) - (?<body>.*)$"
 			}
 		},
 		"level-field": "level",
@@ -84,6 +87,9 @@
 			},
 			{
 				"line": "2018-08-08 03:55:27.974 +0200 (,,,) scheduled-reindex-pending-content-1 : INFO  wgsessionId= com.tableausoftware.domain.content.AnalyticsServiceReindexer - reindexPendingItems is reindexing 0 items."
+			},
+			{
+				"line": "2018-08-08 15:59:30.292 +0200 foldersReconciliationScheduler-1   INFO  : com.tableausoftware.tdfs.filestore.FileReconciliationService - Skipped too recent folderId '{FD35045C-6322-4CBA-902A-65E9126EAD32}' of type 'extract'"
 			}
 		]
 	},
