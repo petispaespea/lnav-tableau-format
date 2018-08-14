@@ -245,11 +245,15 @@
 			},
 			" ",
 			{
+				"field": "user"
+			},
+			" ",
+			{
 				"field": "sess"
 			},
 			" ",
 			{
-				"field": "user"
+				"field": "v/client-session-id"
 			},
 			" ",
 			{
@@ -290,6 +294,11 @@
 			},
 			"v": {
 				"kind": "json"
+			},
+			"v/client-session-id": {
+				"kind": "string",
+				"identifier": true
+			},
 			"a": {
 				"kind": "json"
 			},
