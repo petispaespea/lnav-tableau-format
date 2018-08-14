@@ -290,6 +290,11 @@
 			},
 			"v": {
 				"kind": "json"
+			"a": {
+				"kind": "json"
+			},
+			"ctx": {
+				"kind": "json"
 			}
 		}
 	}
