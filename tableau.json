@@ -227,31 +227,31 @@
 			{
 				"field": "sev"
 			},
-			" ",
+			" pid:",
 			{
 				"field": "pid"
 			},
-			" ",
+			" tid:",
 			{
 				"field": "tid"
 			},
-			" ",
+			" site:",
 			{
 				"field": "site"
 			},
-			" ",
+			" req:",
 			{
 				"field": "req"
 			},
-			" ",
+			" user:",
 			{
 				"field": "user"
 			},
-			" ",
+			" session:",
 			{
 				"field": "sess"
 			},
-			" ",
+			" client-session:",
 			{
 				"field": "v/client-session-id"
 			},
