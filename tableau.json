@@ -276,17 +276,20 @@
 				"identifier": true
 			},
 			"req": {
-				"kind": "string"
+				"kind": "string",
+				"identifier": true
 			},
 			"sess": {
 				"kind": "string",
 				"identifier": true
 			},
 			"site": {
-				"kind": "string"
+				"kind": "string",
+				"identifier": true
 			},
 			"user": {
-				"kind": "string"
+				"kind": "string",
+				"identifier": true
 			},
 			"k": {
 				"kind": "string",
